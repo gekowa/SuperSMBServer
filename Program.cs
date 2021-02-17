@@ -31,7 +31,7 @@ namespace SuperSMBServer
             public bool Verbose { get; set; }
 
             [Option('t', "transport", Default = SMBTransportType.DirectTCPTransport, Required = false,
-                HelpText = "Choose Transport Type: 0 = NetBIOS Over TCP (Port 139), 1 = Direct TCP Transport (Port 445). Default: 1")]
+                HelpText = "Transport Type: 0 = NetBIOS Over TCP (Port 139), 1 = Direct TCP Transport (Port 445). Default: 1")]
             public SMBTransportType TransportType { get; set; }
 
             [Option('p', "protocol", Default = SMBProtocol.SMB1 | SMBProtocol.SMB2 | SMBProtocol.SMB3, Required = false,
@@ -39,7 +39,7 @@ namespace SuperSMBServer
             public SMBProtocol SMBProtocol { get; set; }
             
             [Option("listen", Default = "0.0.0.0", Required = false,
-                HelpText = "IP address to listen to. Default is 0.0.0.0")]
+                HelpText = "IP address to listen on. Default is 0.0.0.0")]
             public string ListenIPAddress { get; set; }
         }
         /// <summary>
@@ -47,7 +47,7 @@ namespace SuperSMBServer
         /// </summary>
         static void Main(string[] args) {
             logger.Info("Super SMB Server started.");
-            logger.Info("Options: {0}", args);
+            logger.Info("Options: {0}", string.Concat(args));
 
             CommandLine.Parser.Default.ParseArguments<Options>(args)
                 .WithParsed(RunOptions)
@@ -55,6 +55,7 @@ namespace SuperSMBServer
         }
 
         static void RunOptions(Options opts) {
+            logger.Info("Options: {0}", opts);
             List<ShareSettings> sharesSettings;
             try {
                 sharesSettings = SettingsHelper.ReadSharesSettings();
