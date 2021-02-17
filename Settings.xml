@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Shares>
+    <Share Name="Shared" Path="C:\Shared">
+      <ReadAccess Accounts="*"></ReadAccess>
+      <WriteAccess Accounts="Admin,Test"></WriteAccess>
+    </Share>
+  </Shares>
+  <AggregatedShares>
+    <AggregatedShare Name="AggShare">
+      <Path>C:\Shared1</Path>
+      <Path>C:\Shared2</Path>
+      <Path>C:\Shared3</Path>
+      <ReadAccess Accounts="*"></ReadAccess>
+      <WriteAccess Accounts="Admin,Test"></WriteAccess>
+    </AggregatedShare>
+  </AggregatedShares>
+</Settings>
