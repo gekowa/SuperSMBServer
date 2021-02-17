@@ -1,6 +1,6 @@
 ﻿# Super SMB Server
 
-Super SMB Server is an SMB file server that supports folder aggregation. It can server files in several separated folders on local disk as single smb share. 
+Super SMB Server is an SMB file server that supports folder aggregation. It can serve files located in several folders on local disks as a single SMB share.
 
 ## What is folder aggregation?
 
@@ -52,7 +52,35 @@ SMBLibrary offers a name service of its own.
 Using PCap.Net you can programmatically setup a virtual Network adapter and intercept SMB traffic (similar to how a virtual machine operates), You should use the ARP protocol to notify the network about the new IP address, and then process the incoming SMB traffic using SMBLibrary, good luck! 
 
 ## Usage
-Just run the built executable file.
+
+### 1. Setup
+All share configurations are stored in Settings.xml. Setup shares by editing it.
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <Shares>
+    <Share Name="Shared" Path="C:\Shared">
+      <ReadAccess Accounts="*"></ReadAccess>
+      <WriteAccess Accounts="Administrator,Test"></WriteAccess>
+    </Share>
+  </Shares>
+  <AggregatedShares>
+    <AggregatedShare Name="AggShare">
+      <Path>C:\Shared1</Path>
+      <Path>C:\Shared2</Path>
+      <Path>C:\Shared3</Path>
+      <ReadAccess Accounts="*"></ReadAccess>
+      <WriteAccess Accounts="Administrator,Test"></WriteAccess>
+    </AggregatedShare>
+  </AggregatedShares>
+</Settings>
+```
+
+Here "Accounts" in "ReadAccess" and "WriteAccess" nodes refers to Windows account names.
+
+### 2. Run
+
 ```
 $ SuperSMBServer
 ```
