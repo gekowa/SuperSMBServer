@@ -38,7 +38,7 @@ namespace SuperSMBServer
         public long Size => 42;
 
 
-        public long FreeSpace => 43;
+        public long FreeSpace => Int32.MaxValue;
 
         public bool SupportsNamedStreams => false;
 
